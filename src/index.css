@@ -1,1 +1,165 @@
+* {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+  --color-primary: #0C8CE9;
+  --color-complementary: #E9590C;
+  --color-error: #dc3545;
+  --color-darkGray: #888888;
+  --color-lightGray: #A7A7A7;
+  --color-background: #EFEFEF;
+  --color-fade: linear-gradient(112.69deg, #0C8CE9 -1.31%, #6310A4 100.69%);
+}
 
+::-webkit-scrollbar {
+  width: 5px; /* Ancho de la barra de desplazamiento */
+  padding: 1px;
+}
+
+/* Estilizar el pulgar de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-lightGray); /* Color del pulgar */
+  border-radius: 3px; /* Borde redondeado del pulgar */
+}
+
+/* Cambiar el color del pulgar cuando se hace hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-darkGray);
+}
+
+.background{
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.footer{
+  width: 100%;
+  height: 3px;
+  background: var(--color-fade);
+  position: absolute;
+  bottom: 0;
+}
+
+.card{
+  background-color: white;
+  border-radius: 2rem;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.button {
+  padding: .25rem .30rem .25rem .30rem;
+  background-color: var(--color-primary);
+  border-radius: .25rem;
+  font-size: .9rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-component{
+  height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.form-error {
+  width: 100%;
+  background: var(--color-error);
+  
+  opacity: 0.8;
+  margin: .25rem 0;
+}
+
+.form-error span{
+  padding: .5rem;
+}
+
+
+.form-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
+  grid-gap: .9rem;  
+}
+
+.form-input {
+  width: 20rem;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.form-input label {
+  margin-bottom: .25rem;
+  display: block;
+}
+
+.form-input input {
+  width: 19.5rem;
+  height: 1.5rem;
+  padding-left: .5rem;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid #D6D6D6;
+  border-radius: 4px;
+}
+
+.form-input select {
+  width: 20rem;
+  height: 1.5rem;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid #D6D6D6;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.form-input textarea{
+  width: 19.5rem;
+  height: 4.5rem;
+  padding-left: .5rem;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid #D6D6D6;
+  border-radius: 4px;
+  resize: none;
+}
+.form-input small{
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #dc3545;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+fieldset{
+  border: none;
+}
+
+.formstep-buttonbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+}
+
+.formstep-buttonbox svg{
+  width: .5rem;
+  height: .5rem;
+  color: var(--color-lightGray);
+}
+
+.formstep-content{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
