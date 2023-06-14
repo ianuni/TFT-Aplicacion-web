@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Button({children, onClick}) {
+function Button({children, onClick, type, hidden}) {
   return (
-    <button className="button" onClick={onClick}>{children}</button>
+    <button type={type} className="button" onClick={onClick} style={{visibility: hidden ? "hidden" : "visible"}}>{children}</button>
   )
 }
 

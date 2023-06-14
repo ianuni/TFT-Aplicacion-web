@@ -1,46 +1,70 @@
 import React from 'react'
 import Container from '../../components/Container'
 import {ReactComponent as Logo} from "../../assets/coinmo.svg"
-import "./styles.css"
 import Card from '../../components/Card'
-import Form, { FormStep } from '../../components/Form'
-import { SelectInput, TextInput, LongTextInput, ImageInput } from '../../components/FormInputs'
+import Form, { SelectInput, TextInput, LongTextInput, ImageInput, PasswordInput, FormStep, SubmitButton } from '../../components/Form'
+import TabMenu, { Tab } from '../../components/TabMenu'
+import { signUp } from '../../utils/database'
+import { useForm } from '../../hooks/useForm'
 
+const initialForm = {
+  name: "",
+  nif: "",
+  phoneNumber: "",
+  category: "",
+  description: "",
+  email: "",
+  password: "",
+  confirmationPassword: "",
+  address: "",
+  apartment: "",
+  city: "",
+  postalCode: "",
+  country: "",
+  image: ""
+};
 
 function SignUp() {
+  const actionOnSubmit = (form) => {
+    signUp(form);
+  }
+  const {errors, handleChange, handleBlur, handleSubmit} = useForm(initialForm, actionOnSubmit)
+
   return (
     <Container>
-      <div className='signup-container'>
-        <div className='signup-title'>
+      <div className='auth-component'>
+        <div className='auth-title'>
           <Logo/>
           <h1>Coinmo</h1>
         </div>
-        <Card width={25} height={31.25}>
-          <div className='signup-tabmenu'>
-            <div className='signup-tabbutton active'>
-              <h1>Sign Up</h1>
-              <div className='signup-underscore'></div>
-            </div>
-            <div className='signup-tabbutton'>
-              <h1>Sign In</h1>
-              <div className='signup-underscore'></div>
-            </div>
-          </div>
-          <div className='signup-form'>
-          <Form>
+        
+        <Card width={25} height={35.25}>
+          <TabMenu>
+            <Tab name="Sign Up" path="/signup"/>
+            <Tab name="Sign In" path="/signin"/>
+          </TabMenu>
+          <div className='auth-form'>
+          <Form onSubmit={(handleSubmit)}>
             <FormStep name="Info">
-              <TextInput label="Nombre"/>
-              <TextInput label="NIF"/>
-              <SelectInput label="Category" items={[]}/>
-              <ImageInput label="Photo"/>
-              <LongTextInput label="Description"/>
+              <TextInput label="Nombre" name="name" onChange={handleChange} onBlur={handleBlur} error={errors.name}/>
+              <TextInput label="NIF" name="nif" onChange={handleChange} onBlur={handleBlur} error={errors.nif}/>
+              <TextInput label="Phone Number" name="phoneNumber" onChange={handleChange} onBlur={handleBlur} error={errors.phoneNumber}/>
+              <SelectInput label="Category" name="category" items={["commerce", "individual"]} onChange={handleChange} onBlur={handleBlur} error={errors.category}/>
+              <ImageInput label="Photo" name="image" onChange={handleChange} onBlur={handleBlur} error={errors.image}/>
+              <LongTextInput label="Description" name="description" onChange={handleChange} onBlur={handleBlur} error={errors.description}/>
             </FormStep>
             <FormStep name="Info">
-              <TextInput label="Nombre"/>
-              <TextInput label="NIF"/>
-              <SelectInput label="Category" items={[]}/>
-              <ImageInput label="Photo"/>
-              <LongTextInput label="Description"/>
+              <TextInput label="Address" name="address" onChange={handleChange} onBlur={handleBlur} error={errors.address}/>
+              <TextInput label="Apartment" name="apartment" onChange={handleChange} onBlur={handleBlur} error={errors.apartment}/>
+              <TextInput label="City" name="city" onChange={handleChange} onBlur={handleBlur} error={errors.city}/>
+              <TextInput label="Postal Code" name="postalCode" onChange={handleChange} onBlur={handleBlur} error={errors.postalCode}/>
+              <TextInput label="Country" name="country" onChange={handleChange} onBlur={handleBlur} error={errors.country}/>
+            </FormStep>
+            <FormStep>
+              <TextInput label="Email" name="email" onChange={handleChange} onBlur={handleBlur} error={errors.email}/>
+              <PasswordInput label="Password" name="password" onChange={handleChange} onBlur={handleBlur} error={errors.password}/>
+              <PasswordInput label="Confirmation" name="confirmationPassword" onChange={handleChange} onBlur={handleBlur} error={errors.confirmationPassword}/>
+              <SubmitButton>Sign Up</SubmitButton>
             </FormStep>
           </Form>
           </div>
