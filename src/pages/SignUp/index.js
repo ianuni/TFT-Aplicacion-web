@@ -6,6 +6,8 @@ import Form, { SelectInput, TextInput, LongTextInput, ImageInput, PasswordInput,
 import TabMenu, { Tab } from '../../components/TabMenu'
 import { signUp } from '../../utils/database'
 import { useForm } from '../../hooks/useForm'
+import { useNavigate } from 'react-router-dom'
+
 
 const initialForm = {
   name: "",
@@ -25,9 +27,13 @@ const initialForm = {
 };
 
 function SignUp() {
-  const actionOnSubmit = (form) => {
-    signUp(form);
+  const navigate = useNavigate();
+
+  const actionOnSubmit = async (form) => {
+    const error  = await signUp(form); 
+    navigate("/");
   }
+
   const {errors, handleChange, handleBlur, handleSubmit} = useForm(initialForm, actionOnSubmit)
 
   return (
