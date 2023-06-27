@@ -2,11 +2,10 @@ import React from 'react'
 import {ReactComponent as MagnifyingGlass} from "../../assets/magnifyingGlass.svg"
 
 
-const SearchBar = ({text}) => {
+const SearchBar = ({text, onChange}) => {
   return (
     <div className="searchbar-component">
-        
-        <input placeholder={text}/>
+        <input placeholder={text} onChange={onChange}/>
         <MagnifyingGlass/>
     </div>
   )

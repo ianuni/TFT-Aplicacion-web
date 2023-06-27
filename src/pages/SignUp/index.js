@@ -2,7 +2,7 @@ import React from 'react'
 import Container from '../../components/Container'
 import {ReactComponent as Logo} from "../../assets/coinmo.svg"
 import Card from '../../components/Card'
-import Form, { SelectInput, TextInput, LongTextInput, ImageInput, PasswordInput, FormStep, SubmitButton } from '../../components/Form'
+import Form, { SelectInput, TextInput, LongTextInput, ImageInput, PasswordInput, FormStep, SubmitButton, NumberInput } from '../../components/Form'
 import TabMenu, { Tab } from '../../components/TabMenu'
 import { signUp } from '../../utils/database'
 import { useForm } from '../../hooks/useForm'
@@ -54,7 +54,7 @@ function SignUp() {
             <FormStep name="Info">
               <TextInput label="Nombre" name="name" onChange={handleChange} onBlur={handleBlur} error={errors.name}/>
               <TextInput label="NIF" name="nif" onChange={handleChange} onBlur={handleBlur} error={errors.nif}/>
-              <TextInput label="Phone Number" name="phoneNumber" onChange={handleChange} onBlur={handleBlur} error={errors.phoneNumber}/>
+              <NumberInput label="Phone Number" name="phoneNumber" onChange={handleChange} onBlur={handleBlur} error={errors.phoneNumber}/>
               <SelectInput label="Category" name="category" items={["commerce", "individual"]} onChange={handleChange} onBlur={handleBlur} error={errors.category}/>
               <ImageInput label="Photo" name="image" onChange={handleChange} onBlur={handleBlur} error={errors.image}/>
               <LongTextInput label="Description" name="description" onChange={handleChange} onBlur={handleBlur} error={errors.description}/>

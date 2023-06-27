@@ -110,4 +110,12 @@ export const validations = {
             return "The file size exceeds 4 MB."
         }
     },
+    customer: (form) => {
+        if(form.customer.trim().length === 0){
+            return "Customer is required";
+         }
+         else{
+             return null;
+         }
+    },
   };

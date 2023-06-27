@@ -7,6 +7,31 @@ const usersPublicRef = collection(db, "usersPublic");
 
 
 export const signUp = async (form) => {
+    /*const formData = new FormData(); // Crea una nueva instancia de FormData
+    formData.append('file', form.image); // Agrega el archivo al objeto FormData
+  
+    fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/upload", {
+      method: 'POST',
+      body: formData
+    }).then(response => response.json())
+    .then(data => {
+      console.log('Respuesta:', data);
+    })*/
+
+    /*fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/user/add", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Respuesta:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });*/
     const error = null;
     const credentials = await createUserWithEmailAndPassword(auth, form.email, form.password);
     const uid = credentials.user.uid;
@@ -45,8 +70,8 @@ export const signUp = async (form) => {
     });
     await updateProfile(credentials.user, {
         displayName: form.name,
-        photoURL, photoURL
+        photoURL: photoURL
     })
     return error;
-
+    
 }
