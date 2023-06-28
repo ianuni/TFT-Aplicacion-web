@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { auth } from '../../firebase'
 import Card from '../../components/Card'
+import { deleteInvoice } from '../../utils/database'
 
 function Invoice() {
     const { id } = useParams()
@@ -27,10 +28,16 @@ function Invoice() {
 
         id && getInvoice()
     }, [id])
+
+function handleDelete(e){
+    e.preventDefault();
+    deleteInvoice(id); 
+}
+
   return (
     <div className="invoice-component">
         {invoice && date && 
-        <Card width={40} height={55}>
+        <Card width="40rem" height="55rem">
             <div className='invoice-header'>
             <div className='invoice-vendor-data'>
                 <img src={invoice.vendor.photoURL} alt="vendor logo"/>
@@ -103,7 +110,7 @@ function Invoice() {
                     </tbody>
                 </table>
             </div>
-            <button className='invoice-delete-button'>Eliminar</button>
+            <button className='invoice-delete-button' onClick={handleDelete}>Eliminar</button>
         </Card>
         }
     </div>

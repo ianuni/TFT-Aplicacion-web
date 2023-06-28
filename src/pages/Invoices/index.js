@@ -54,7 +54,7 @@ function Invoices() {
     
       <InvoiceList>
         {invoices.sort(sortingSelector(sorting)).filter( invoice=> (invoice.vendor.name.toLowerCase().includes(query.toLowerCase()) 
-        || invoice.customer.name.toLowerCase().includes(query.toLowerCase()) ))
+        || invoice.customer.name.toLowerCase().includes(query.toLowerCase())))
         .map((invoice, index) => (
           <Invoice key={index} invoice={invoice}/>
         ))}
@@ -91,6 +91,9 @@ const Invoice = ({invoice}) => {
                 <span>{invoice.vendor.category}</span>
               </>
           }
+          
+          
+          
           <div className="invoice-date-information">
               <span>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</span>
               <span>{date.getHours()}:{date.getMinutes()}</span>
@@ -98,6 +101,7 @@ const Invoice = ({invoice}) => {
           <div className="invoice-description">
             <p>{invoice.observations}</p>
           </div>
+          <p className={"invoice-state-" + invoice.state}>{invoice.state}</p>
           <hr className="invoice-separator"/>
           <div className="invoice-price">
               <h2>Total:</h2>

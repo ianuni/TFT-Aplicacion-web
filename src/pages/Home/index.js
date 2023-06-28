@@ -7,7 +7,6 @@ import Container from "../../components/Container"
 import Navigation, { NavItem } from '../../components/Navigation'
 import { Outlet } from 'react-router-dom'
 function Home() {
-  console.log("home")
 
   return (
     <Container>

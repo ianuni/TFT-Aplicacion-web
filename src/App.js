@@ -5,16 +5,18 @@ import SignUp from "./pages/SignUp";
 import { useAuth } from "./context/AuthContext";
 import Invoices from "./pages/Invoices";
 import AddInvoice from "./pages/AddInvoice";
-import Button from "./components/Button";
-import { signOut } from "firebase/auth";
-import { auth } from "./firebase";
 import Invoice from "./pages/Invoice";
+import Configuration from "./pages/Configuration";
+import Inbox from "./pages/inbox";
 
 function App() {
-  const {currentUser} = useAuth();
-  console.log(currentUser)
+  const {currentUser, loading} = useAuth();
+
 
   const ProtectedRoute = ({children}) => {
+    if(loading){
+      return "Loading"
+    }
     if(!currentUser){
       return <Navigate to="/signin"/>
     } 
@@ -32,9 +34,11 @@ function App() {
           <Route path=":id" element={<Invoice/>}/>
         </Route>
         <Route path="contacts" element={<Home/>}></Route>
-        <Route path="inbox" element={<Home/>}/>
+        <Route path="inbox" element={<Inbox/>}/>
         <Route path="statistics" element={<Home/>}/>
-        <Route path="profile" element={<Button onClick={() => signOut(auth)}>Sign Out</Button>}/>
+        <Route path="profile" element={<Configuration/>}>
+
+        </Route>
       </Route>
       <Route path="signin" element={<SignIn/>}/>
       <Route path="signup" element={<SignUp/>}/>

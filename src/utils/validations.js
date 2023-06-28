@@ -118,4 +118,16 @@ export const validations = {
              return null;
          }
     },
+    observations: (form) => {
+        return null;
+    },
+    paymentMethod: (form) => {
+        return null;
+    },
+    taxRate: (form) => {
+        return null;
+    },
+    concept: (form) => {
+        return null;
+    }
   };

@@ -44,7 +44,7 @@ function SignUp() {
           <h1>Coinmo</h1>
         </div>
         
-        <Card width={25} height={35.25}>
+        <Card width="25rem" height="35.25rem">
           <TabMenu>
             <Tab name="Sign Up" path="/signup"/>
             <Tab name="Sign In" path="/signin"/>

@@ -19,7 +19,6 @@ export const useForm= (initialForm, actionOnSubmit) => {
         [e.target.name]: e.target.value
     });
     }
-    console.log(form);
   }
 
   const handleBlur = (e) => {
@@ -33,7 +32,7 @@ export const useForm= (initialForm, actionOnSubmit) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     var errors = {};
-    /*for (let input in form){
+    for (let input in form){
         let error = validations[input](form);
         if (error) {
             errors = {
@@ -41,7 +40,7 @@ export const useForm= (initialForm, actionOnSubmit) => {
                 [input] : error
             }
         }
-    }*/
+    }
     if(Object.keys(errors).length === 0){
         actionOnSubmit(form);
     }

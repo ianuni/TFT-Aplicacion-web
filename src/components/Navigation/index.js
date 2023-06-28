@@ -20,7 +20,7 @@ const Navigation = ({children}) => {
 }
 
 export const NavItem = ({icon, to, tag}) => {
-    const state = (to === useLocation().pathname)
+    const state = (useLocation().pathname.includes(to))
     
   return (
     <li className={state ? "navigation-item activated" : "navigation-item"}>

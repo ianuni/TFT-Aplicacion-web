@@ -75,3 +75,50 @@ export const signUp = async (form) => {
     return error;
     
 }
+
+export const deleteInvoice = async (idToken, invoiceId, callback) => {
+  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/invoice/" + invoiceId, {
+      method: 'DELETE',
+      headers: {
+          'Authorization': `Bearer ${idToken}`
+      }
+  })
+}
+
+export const addInvoice = async (idToken, invoiceRequest, callback) => {
+  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/invoice", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${idToken}`
+            },
+            body: JSON.stringify(invoiceRequest)
+  })
+}
+
+export const validateInvoice = async (idToken, invoiceId) => {
+  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/validate/invoice/" + invoiceId, {
+      method: 'POST',
+      headers: {
+          'Authorization': `Bearer ${idToken}`
+      }
+  })
+}
+
+export const declineInvoice = async (idToken, invoiceId) => {
+  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/decline/invoice/" + invoiceId, {
+      method: 'POST',
+      headers: {
+          'Authorization': `Bearer ${idToken}`
+      }
+  })
+}
+
+export const deleteNotification = async (idToken, notificationId) => {
+  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/notification/" + notificationId, {
+      method: 'DELETE',
+      headers: {
+          'Authorization': `Bearer ${idToken}`
+      }
+  })
+}
