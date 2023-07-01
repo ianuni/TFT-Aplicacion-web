@@ -497,7 +497,6 @@ input[type="file"]{
 /*------------------------------------------------------------*/
 
 .invoices-searchbar{
-  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -505,9 +504,28 @@ input[type="file"]{
 }
 
 .invoices-list-component{
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.invoices-list-title{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.invoices-list-title h1{
+  color: inherit;
+}
+
+.invoices-list-separator{
+  flex: 1;
+  height: 3px;
+  border-radius: 1.5px;
+  background-color: inherit;
 }
 
 .invoices-grid {
@@ -607,42 +625,46 @@ input[type="file"]{
   width: 100%;
   height: 32rem;
 }
-
+/*---------------------Invoice Page---------------------------*/
 /*------------------------------------------------------------*/
-.invoice-component {
+.invoice-page {
   display:flex;
   justify-content: center;
 }
 
 .invoice-header{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, auto));
+  gap: 1rem;
   padding: 1rem;
 }
-.invoice-delete-button{
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  padding: .25rem;
-  border: none;
-  border-radius: .25rem;
-  color: white;
-  background-color: var(--color-complementary);
-  cursor: pointer;
-}
 
-.invoice-vendor-data{
+.invoice-user-data{
+  width: 15rem;
   display: flex;
-  align-items: center;
-  justify-content: left;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: left;
 }
 
-.invoice-vendor-data img{
-  width: 5rem;
-  height: 5rem;
+.invoice-user-data h1{
+  color: var(--color-primary);
+}
+.invoice-user-image{
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.invoice-user-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.invoice-details{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
 }
 
 .invoice-concept{
@@ -652,6 +674,11 @@ input[type="file"]{
   margin-top: 1rem;
   height: 20rem;
   overflow: auto;
+  position: relative;
+}
+
+.invoice-total-rows table{
+ width: 100%;
 }
 
 .invoice-concept table{
@@ -665,18 +692,30 @@ input[type="file"]{
   left: 0;
 }
 
-.invoice-total{
-  display: flex;
-  justify-content: right;
-}
-.invoice-total th{
-  padding: 0 1rem;
-}
-.invoice-total td{
-  width: 5rem;
-}
 th{
   background-color: #67AEE1;
+}
+
+.invoice-button-box{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: .25rem;
+}
+.invoice-button{
+  padding: .25rem;
+  border: none;
+  border-radius: .25rem;
+  color: white;
+  
+  cursor: pointer;
+}
+
+.button-primary{
+  background-color: var(--color-primary);
+}
+.button-secondary{
+  background-color: var(--color-complementary);
 }
 
 /*---------------------Profile Page---------------------------*/
@@ -724,11 +763,11 @@ th{
   align-items: center;
 }
 
-.inbox-notification-notification {
+.inbox-notification-component {
   width: 30rem;
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 1rem;
   padding: 1rem;
   background-color: white;
   border-radius: 1rem;
@@ -736,16 +775,24 @@ th{
   cursor: pointer;
 }
 
-.inbox-notification-notification:hover{
+.inbox-notification-component:hover{
   background-color: var(--color-card-hover);
 }
-.inbox-notification-notification img {
+.inbox-notification-image{
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  
+  overflow: hidden;
 }
 
+.inbox-notification-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.inbox-notification-content{
+  width: calc(100% - 6rem);
+}
 .inbox-notification-title {
   font-size: 1.1rem;
 }
@@ -766,8 +813,8 @@ th{
 }
 
 .inbox-notification-button-box{
-  
   display: flex;
+  justify-content: center;
   gap: .25rem;
 }
 

@@ -24,7 +24,7 @@ const sortingSelector = (sorting) => {
   
 }
 
-function Invoices() {
+function InvoicePage() {
   const navigate = useNavigate();
   const {currentUser} = useAuth()
   const [query, setQuery] = useState("")
@@ -51,9 +51,8 @@ function Invoices() {
         <Button onClick={() => {navigate("add")}}>Add</Button>
       </div>
       
-      <InvoiceList title="Sales">
-        {invoices.length > 0 ? 
-          invoices
+      <Invoices type="sales">
+        { invoices
           // Filter invoices where user is vendor
           .filter(invoice => invoice.vendor.name === currentUser.displayName)
           // Sort invoices by user selection
@@ -62,40 +61,54 @@ function Invoices() {
           .filter( invoice=> invoice.customer.name.toLowerCase().includes(query.toLowerCase()))
           .map((invoice, index) => (
             <Invoice key={index} invoice={invoice}/>
-          )) :
-          <p className="invoices-empty-message">No sales yet</p>
-        } 
-      </InvoiceList> 
-      <div className="invoice-separator"></div>
-      <InvoiceList title="Expenses">
-        {invoices.length > 0 ? 
-          invoices
+          ))} 
+      </Invoices> 
+      
+      <Invoices type="expenses">
+        {invoices
+          // Filter invoices where user is customer
           .filter(invoice => invoice.customer.name === currentUser.displayName)
+          // Sort by user selection
           .sort(sortingSelector(sorting))
+          // Search invoices by name
           .filter( invoice=> invoice.vendor.name.toLowerCase().includes(query.toLowerCase()))
           .map((invoice, index) => (
             <Invoice key={index} invoice={invoice}/>
-          )) :
-          <p className="invoices-empty-message">No sales yet</p>
+          ))
         } 
-      </InvoiceList> 
+      </Invoices> 
     </>
 
   )
 }
 
-const InvoiceList = ({children, title}) => {
+function Invoices({children, type}){
   return (
     <div className='invoices-list-component'>
-      <h1>{title}</h1>
+      <div className="invoices-list-title">
+        {type === "sales" ?
+          <>
+          <h1 style={{color: "var(--color-primary)"}}>{type}</h1>
+          <div className="invoices-list-separator" style={{backgroundColor: "var(--color-primary)"}}></div>
+          </> : null
+        }
+        {type === "expenses" ?
+          <>
+          <h1 style={{color: "var(--color-complementary)"}}>{type}</h1>
+          <div className="invoices-list-separator" style={{backgroundColor: "var(--color-complementary)"}}></div>
+          </> : null
+        }
+      </div>
       <div className="invoices-grid">
-        {children}
+        {children.length > 0 ? 
+          children :
+          <p className="invoices-empty-message">Empty</p>}
       </div>
     </div>
   )
 }
 
-const Invoice = ({invoice}) => {
+function Invoice({invoice}){
     const navigate = useNavigate();
     const {currentUser} = useAuth();
     const date = new Date(invoice.timestamp)
@@ -133,4 +146,4 @@ const Invoice = ({invoice}) => {
     );
 }
 
-export default Invoices
+export default InvoicePage
