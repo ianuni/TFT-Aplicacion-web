@@ -122,3 +122,14 @@ export const deleteNotification = async (idToken, notificationId) => {
       }
   })
 }
+
+export const getUserByName = async (idToken, name, callback) => {
+  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/user/" + name.toLowerCase(), {
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${idToken}`
+    }
+  })
+  .then((response) => response.json())
+  .then(callback)
+}

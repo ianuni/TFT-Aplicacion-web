@@ -174,7 +174,6 @@ export const ImageInput = ({label, name, error, onChange, onBlur}) => {
         .then((response) => response.json())
         .then(data => setResults(data.slice(0,3)))
         .catch(error => setResults(null))
-
     }
 
     function handleClick(selection) {

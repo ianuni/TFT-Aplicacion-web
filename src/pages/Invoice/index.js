@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import { auth } from '../../firebase'
 import Card from '../../components/Card'
 import { deleteInvoice } from '../../utils/database'
+import { useAuth } from '../../context/AuthContext'
 
 function Invoice() {
+    const {currentUser} = useAuth()
     const { id } = useParams()
     const [invoice, setInvoice] = useState()
     const [date, setDate] = useState()
@@ -31,7 +33,7 @@ function Invoice() {
 
 function handleDelete(e){
     e.preventDefault();
-    deleteInvoice(id); 
+    deleteInvoice(currentUser.token, id); 
 }
 
   return (

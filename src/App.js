@@ -7,7 +7,8 @@ import Invoices from "./pages/Invoices";
 import AddInvoice from "./pages/AddInvoice";
 import Invoice from "./pages/Invoice";
 import Configuration from "./pages/Configuration";
-import Inbox from "./pages/inbox";
+import Inbox from "./pages/Inbox";
+import Statistics from "./pages/Statistics";
 
 function App() {
   const {currentUser, loading} = useAuth();
@@ -29,13 +30,15 @@ function App() {
     <Routes>
       <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}>
         <Route path="invoices">
-          <Route index element={<Invoices/>}/>
+          <Route index element={<Invoices/>}>
+            
+          </Route>
           <Route path="add" element={<AddInvoice/>}/>
           <Route path=":id" element={<Invoice/>}/>
         </Route>
-        <Route path="contacts" element={<Home/>}></Route>
+        
         <Route path="inbox" element={<Inbox/>}/>
-        <Route path="statistics" element={<Home/>}/>
+        <Route path="statistics" element={<Statistics/>}/>
         <Route path="profile" element={<Configuration/>}>
 
         </Route>

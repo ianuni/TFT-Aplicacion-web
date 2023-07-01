@@ -7,6 +7,7 @@ import TabMenu, { Tab } from '../../components/TabMenu'
 import { signUp } from '../../utils/database'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from 'react-router-dom'
+import { categories } from '../../utils/data'
 
 
 const initialForm = {
@@ -55,7 +56,7 @@ function SignUp() {
               <TextInput label="Nombre" name="name" onChange={handleChange} onBlur={handleBlur} error={errors.name}/>
               <TextInput label="NIF" name="nif" onChange={handleChange} onBlur={handleBlur} error={errors.nif}/>
               <NumberInput label="Phone Number" name="phoneNumber" onChange={handleChange} onBlur={handleBlur} error={errors.phoneNumber}/>
-              <SelectInput label="Category" name="category" items={["commerce", "individual"]} onChange={handleChange} onBlur={handleBlur} error={errors.category}/>
+              <SelectInput label="Category" name="category" items={categories} onChange={handleChange} onBlur={handleBlur} error={errors.category}/>
               <ImageInput label="Photo" name="image" onChange={handleChange} onBlur={handleBlur} error={errors.image}/>
               <LongTextInput label="Description" name="description" onChange={handleChange} onBlur={handleBlur} error={errors.description}/>
             </FormStep>

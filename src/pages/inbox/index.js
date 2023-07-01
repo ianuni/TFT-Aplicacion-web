@@ -7,7 +7,7 @@ import { declineInvoice, validateInvoice, deleteNotification } from '../../utils
 function Inbox() {
     const {currentUser} = useAuth()
     const [notifications, setNotifications] = useState([])
-
+    
     useEffect(() => {
         const getNotifications = () => {
           const unsub = onSnapshot(collection(db, `users/${currentUser.uid}/notifications`), 
@@ -22,9 +22,12 @@ function Inbox() {
     
     return (
         <div className="inbox-page">
-            {notifications.map(notification => (
-                <InvoiceNotification key={notification.id} notification={notification}/>
-            ))}
+            {notifications.length > 0 ?
+                notifications.map(notification => (
+                    <InvoiceNotification key={notification.id} notification={notification}/>
+                )) :
+                <p className="inbox-empty-message">Your inbox is empty</p>
+            }
 
         </div>
   )

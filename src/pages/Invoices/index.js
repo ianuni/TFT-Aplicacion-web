@@ -51,24 +51,46 @@ function Invoices() {
         <Button onClick={() => {navigate("add")}}>Add</Button>
       </div>
       
-    
-      <InvoiceList>
-        {invoices.sort(sortingSelector(sorting)).filter( invoice=> (invoice.vendor.name.toLowerCase().includes(query.toLowerCase()) 
-        || invoice.customer.name.toLowerCase().includes(query.toLowerCase())))
-        .map((invoice, index) => (
-          <Invoice key={index} invoice={invoice}/>
-        ))}
-      </InvoiceList>
-    
+      <InvoiceList title="Sales">
+        {invoices.length > 0 ? 
+          invoices
+          // Filter invoices where user is vendor
+          .filter(invoice => invoice.vendor.name === currentUser.displayName)
+          // Sort invoices by user selection
+          .sort(sortingSelector(sorting))
+          // Search invoices by name
+          .filter( invoice=> invoice.customer.name.toLowerCase().includes(query.toLowerCase()))
+          .map((invoice, index) => (
+            <Invoice key={index} invoice={invoice}/>
+          )) :
+          <p className="invoices-empty-message">No sales yet</p>
+        } 
+      </InvoiceList> 
+      <div className="invoice-separator"></div>
+      <InvoiceList title="Expenses">
+        {invoices.length > 0 ? 
+          invoices
+          .filter(invoice => invoice.customer.name === currentUser.displayName)
+          .sort(sortingSelector(sorting))
+          .filter( invoice=> invoice.vendor.name.toLowerCase().includes(query.toLowerCase()))
+          .map((invoice, index) => (
+            <Invoice key={index} invoice={invoice}/>
+          )) :
+          <p className="invoices-empty-message">No sales yet</p>
+        } 
+      </InvoiceList> 
     </>
 
   )
 }
 
-const InvoiceList = ({children}) => {
+const InvoiceList = ({children, title}) => {
   return (
-    <div className="invoice-grid">
+    <div className='invoices-list-component'>
+      <h1>{title}</h1>
+      <div className="invoices-grid">
         {children}
+      </div>
     </div>
   )
 }
@@ -79,7 +101,6 @@ const Invoice = ({invoice}) => {
     const date = new Date(invoice.timestamp)
 
     return (
-
         <div className="invoice" onClick={() => {navigate(`${invoice.id}`)}}>
           {currentUser.displayName === invoice.vendor.name ?
               <>
@@ -91,9 +112,6 @@ const Invoice = ({invoice}) => {
                 <span>{invoice.vendor.category}</span>
               </>
           }
-          
-          
-          
           <div className="invoice-date-information">
               <span>{date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</span>
               <span>{date.getHours()}:{date.getMinutes()}</span>
