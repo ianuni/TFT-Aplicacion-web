@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { auth } from '../../firebase'
 import Card from '../../components/Card'
-import { deleteInvoice } from '../../utils/database'
+import { declineInvoice, deleteInvoice, validateInvoice } from '../../utils/database'
 import { useAuth } from '../../context/AuthContext'
+import {useNavigate} from 'react-router-dom'
 
 function Invoice() {
     const {currentUser} = useAuth()
     const { id } = useParams()
     const [invoice, setInvoice] = useState()
     const [date, setDate] = useState()
+    const navigate = useNavigate()
+
     useEffect( () => {
         const getInvoice = async() => {
             const idToken = await auth.currentUser.getIdToken()
@@ -31,15 +34,26 @@ function Invoice() {
         id && getInvoice()
     }, [id])
 
+
+async function handleValidate (e) {
+    e.preventDefault()
+    await validateInvoice(currentUser.token, invoice.id);
+}
+
+async function handleDecline (e) {
+    e.preventDefault()
+    await declineInvoice(currentUser.token, invoice.id);
+}
+
 function handleDelete(e){
     e.preventDefault();
-    deleteInvoice(currentUser.token, id); 
+    deleteInvoice(currentUser.token, id).then(() => navigate('/invoices')) 
 }
 
   return (
     <div className="invoice-page">
         {invoice && date && 
-        <Card width="45rem" height="55rem">
+        <Card width="45rem" height="100%">
             <div className='invoice-header'>
                 <div className='invoice-user-data'>
                     <h1>From:</h1>
@@ -153,7 +167,7 @@ function handleDelete(e){
                     <button className='invoice-button button-secondary' onClick={handleDelete}>Decline</button>
                 </> : 
                 <>
-                    <button className='invoice-button button-primary' onClick={handleDelete}>Go Back</button>
+                    <button className='invoice-button button-primary' onClick={() => navigate("/invoices")}>Go Back</button>
                     <button className='invoice-button button-secondary' onClick={handleDelete}>Delete</button>
                 </>}
             </div>

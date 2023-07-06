@@ -14,16 +14,14 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px; /* Ancho de la barra de desplazamiento */
+  width: 5px;
 }
 
-/* Estilizar el pulgar de la barra de desplazamiento */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-lightGray); /* Color del pulgar */
-  border-radius: 3px; /* Borde redondeado del pulgar */
+  background-color: var(--color-lightGray);
+  border-radius: 3px;
 }
 
-/* Cambiar el color del pulgar cuando se hace hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-darkGray);
 }
@@ -31,27 +29,32 @@
 a,
 a:link,
 a:visited {
-  color: inherit; 
-  text-decoration: none; 
+  color: inherit;
+  text-decoration: none;
 }
 
 ul {
-  list-style:none;
+  list-style: none;
 }
 
-fieldset{
+fieldset {
   border: none;
 }
 
-/*CSS properties for components*/
+/*------------------------CSS properties for components-----------------------*/
+/*----------------------------------------------------------------------------*/
 
-.background{
+/*-------------------Background Component---------------------*/
+/*------------------------------------------------------------*/
+.background {
   position: relative;
   min-height: 100vh;
   background-color: var(--color-background);
 }
 
-.footer{
+/*--------------------Footer Component------------------------*/
+/*------------------------------------------------------------*/
+.footer {
   width: 100%;
   height: 3px;
   background: var(--color-fade);
@@ -59,20 +62,20 @@ fieldset{
   bottom: 0;
 }
 
+/*----------------------Card Component------------------------*/
 /*------------------------------------------------------------*/
-
-.card{
+.card {
   background-color: white;
   border-radius: 2rem;
   padding: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: scroll;
   overflow-x: hidden;
   position: relative;
 }
 
+/*---------------------Button Component-----------------------*/
 /*------------------------------------------------------------*/
-
 .button {
   padding: .25rem .30rem .25rem .30rem;
   background-color: var(--color-primary);
@@ -83,23 +86,39 @@ fieldset{
   cursor: pointer;
 }
 
-/*------------------------------------------------------------*/
+.button-box {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: .25rem;
+}
 
-.form-component{
+.button-primary {
+  background-color: var(--color-primary);
+}
+
+.button-secondary {
+  background-color: var(--color-complementary);
+}
+
+/*----------------------Form Component------------------------*/
+/*------------------------------------------------------------*/
+.form-component {
   position: relative;
   height: 100%;
   overflow: scroll;
   overflow-x: hidden;
 }
+
 .form-error {
   width: 100%;
   background: var(--color-error);
-  
+
   opacity: 0.8;
   margin: .25rem 0;
 }
 
-.form-error span{
+.form-error span {
   padding: .5rem;
 }
 
@@ -107,11 +126,18 @@ fieldset{
 .form-input-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
-  grid-gap: .9rem;  
+  grid-gap: .9rem;
 }
 
 .form-input {
-  width: 20rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-input-box {
+  width: 100%;
+  max-width: 20rem;
   padding-bottom: 1rem;
   position: relative;
 }
@@ -122,7 +148,7 @@ fieldset{
 }
 
 .form-input input {
-  width: 19.5rem;
+  width: calc(100% - .6rem);
   height: 1.5rem;
   padding-left: .5rem;
   display: block;
@@ -133,7 +159,7 @@ fieldset{
 }
 
 .form-input select {
-  width: 20rem;
+  width: calc(100% - .6rem);
   height: 1.5rem;
   display: block;
   font-family: inherit;
@@ -143,8 +169,8 @@ fieldset{
   margin: 0;
 }
 
-.form-input textarea{
-  width: 19.5rem;
+.form-input textarea {
+  width: calc(100% - .6rem);
   height: 4.5rem;
   padding-left: .5rem;
   display: block;
@@ -154,36 +180,39 @@ fieldset{
   border-radius: 4px;
   resize: none;
 }
-.form-input small{
+
+.form-input small {
+  width: 100%;
   font-size: 12px;
   position: absolute;
   bottom: 0;
   left: 0;
-  color: #dc3545;
+  color: var(--color-error);
 }
 
-input[type="file"]{
+input[type="file"] {
   display: none;
 }
 
-.form-search-input-list{
+.form-search-input-list {
   width: inherit;
-  position:absolute;
+  position: absolute;
   z-index: 1;
   border: 1px solid #D6D6D6;
 }
 
-.form-search-input-item{
-  
-  width:inherit;
+.form-search-input-item {
+
+  width: inherit;
   padding: .25rem 0 .25rem 0;
   height: 2rem;
   display: flex;
   align-items: center;
   background-color: white;
-  
+
 }
-.form-search-input-item img{
+
+.form-search-input-item img {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -191,26 +220,26 @@ input[type="file"]{
   margin-left: .25rem;
 }
 
-.form-search-input-item:hover{
+.form-search-input-item:hover {
   background-color: var(--color-card-hover);
 }
 
-.formstep-buttonbox{
+.formstep-buttonbox {
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: .25rem;
-  
+
 }
 
-.formstep-buttonbox svg{
+.formstep-buttonbox svg {
   width: .5rem;
   height: .5rem;
   color: var(--color-lightGray);
 }
 
-.formstep-content{
+.formstep-content {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -218,98 +247,82 @@ input[type="file"]{
   align-items: center;
 }
 
-.form-product-input-group{
+.form-products-input {
+  width: 100%;
   display: flex;
-  gap: .25rem;
-  padding-bottom: 1rem;
-}
-.form-product-input-group input{
-  padding-left: .5rem;
-  width: 4rem;
-  height: 1.5rem;
-  font-size: .8rem;
-  border: none;
-  border-radius: .25rem;
-}
-.form-product-input-group input:first-child{
-  width: 6rem;
+  flex-direction: column;
+  align-items: center;
+
 }
 
-.form-product-input-group input:focus{
-  outline-color: #0C8CE9;
-  outline-style: solid;
-  outline-width: 2px;
+.form-products-input small {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-error);
 }
 
-.form-product-product-item{
-  margin-top: .25rem;
-  display:flex;
-  justify-content: space-evenly;
-}
-
-.form-product-product-item span{
-  color: var(--color-darkGray)
-}
+/*--------------------Tab Menu Component----------------------*/
 /*------------------------------------------------------------*/
-
-.tabmenu-component{
+.tabmenu-component {
   margin-top: 1rem;
   height: 3rem;
   display: flex;
   align-items: center;
-  justify-content:space-evenly ;
+  justify-content: space-evenly;
 }
 
-.tabmenu-tab-underscore{
+.tabmenu-tab-underscore {
   height: 2px;
   border-radius: 1rem;
   background-color: var(--color-primary);
 }
 
-.tabmenu-tab-activated .tabmenu-tab-name{
+.tabmenu-tab-activated .tabmenu-tab-name {
   color: var(--color-primary);
 }
 
+/*-------------------Search Bar Component---------------------*/
 /*------------------------------------------------------------*/
-
-.searchbar-component{
+.searchbar-component {
   width: 20rem;
   min-width: 5rem;
   height: 2.5rem;
   padding: 0 2rem 0 0;
-  background-color: #D9D9D9 ;
+  background-color: #D9D9D9;
   border-radius: 3rem;
   position: relative;
 }
 
-.searchbar-component input{
-  width:100%;
+.searchbar-component input {
+  width: 100%;
   height: 100%;
   background-color: transparent;
   border: none;
-  color:#888888;
+  color: #888888;
   border-radius: 3rem;
   padding: 0 0 0 2rem;
 }
-.searchbar-component input:focus{
+
+.searchbar-component input:focus {
   outline-color: #0C8CE9;
   outline-style: solid;
   outline-width: 2px;
 }
 
-.searchbar-component svg{
+.searchbar-component svg {
   width: 1rem;
   color: var(--color-darkGray);
   position: absolute;
   top: 50%;
   left: .75rem;
-  transform:translateY(-50%)
+  transform: translateY(-50%)
 }
 
+/*------------------Sort Button Component---------------------*/
 /*------------------------------------------------------------*/
-
-.sort-button-component{
-  min-width:  2.5rem;
+.sort-button-component {
+  min-width: 2.5rem;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -319,7 +332,7 @@ input[type="file"]{
   cursor: pointer;
 }
 
-.sort-button-component svg{
+.sort-button-component svg {
   width: 1rem;
   height: 1rem;
   position: absolute;
@@ -330,7 +343,7 @@ input[type="file"]{
   cursor: pointer;
 }
 
-.sort-button-list{
+.sort-button-list {
   margin-top: .5rem;
   width: 8rem;
   background-color: #D9D9D9;
@@ -342,55 +355,38 @@ input[type="file"]{
 
 }
 
-.sort-button-list li{
+.sort-button-list li {
   padding-left: .5rem;
   height: 1.5rem;
   color: var(--color-darkGray);
   cursor: pointer;
 }
-.sort-button-list li:last-child{
-  border:none;
+
+.sort-button-list li:last-child {
+  border: none;
 }
 
-.sort-button-list li:hover{
+.sort-button-list li:hover {
   background-color: hsl(0, 0%, 80%);
 }
-/*--------------------------CSS properties for pages--------------------------*/
-/*----------------------------------------------------------------------------*/
 
-.auth-component{
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  overflow: scroll;
-}
-
-.auth-title{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.auth-title svg{
-  height: 4.5rem;
-  width: 4.5rem;
-}
-
-.auth-title h1{
-  font-size: 2rem;
-  color: var(--color-primary);
-}
-
-.auth-form{
-  height: calc(100% - 4rem)
-}
-
+/*--------------------Dialog Component------------------------*/
 /*------------------------------------------------------------*/
+.dialog-component {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/*----------------------Nav Component-------------------------*/
+/*------------------------------------------------------------*/
 .navigation-component {
   position: fixed;
   background-color: var(--color-background);
@@ -398,7 +394,7 @@ input[type="file"]{
 }
 
 .navigation-bar {
-  background-color:white;
+  background-color: white;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
 }
 
@@ -407,34 +403,34 @@ input[type="file"]{
   padding: 0;
   margin: 0;
   display: flex;
-  
+
   align-items: center;
   justify-content: space-evenly;
-  
+
 }
 
 .navigation-item {
   width: 3rem;
-  height:3rem;
-  position:relative
+  height: 3rem;
+  position: relative
 }
 
 .navigation-item svg {
   width: 40%;
   margin: auto;
-  position:absolute;
+  position: absolute;
   left: 50%;
-  top:50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   color: var(--color-darkGray);
   transition: 70ms ease;
 }
 
-.activated svg{
+.activated svg {
   color: var(--color-primary)
 }
 
-.navigation-item:hover svg{
+.navigation-item:hover svg {
   width: 50%;
   margin: auto;
   color: var(--color-primary);
@@ -445,83 +441,139 @@ input[type="file"]{
   overflow-y: scroll;
 }
 
-@media only screen and (max-width:600px){
+@media only screen and (max-width:600px) {
   .navigation-component {
-      height: 3.5rem;
-      width: 100%;
-      bottom:0;
+    height: 3.5rem;
+    width: 100%;
+    bottom: 0;
   }
+
   .navigation-bar {
-      height: 3rem;
-      width: 100%;
-      bottom:0;
-      margin-top: .5rem;
-      border-top-right-radius: 2rem;
-      border-top-left-radius: 2rem;
+    height: 3rem;
+    width: 100%;
+    bottom: 0;
+    margin-top: .5rem;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
   }
+
   .navigation-list {
-      flex-direction: row;
-      width: 100%;
-  }
-  .home-section {
-      height: calc(100vh - 5rem);
-      margin: 0;
-      margin-bottom: 3rem;
-      position: relative;
-  }
-}
-@media only screen and (min-width:600px){
-  .navigation-component {
-      width: 3rem;
-      
-  }
-  .navigation-bar {
-      width: 3rem;
-      height: 20rem;
-      margin-top: 3rem;
-      border-top-right-radius: 2rem;
-      border-bottom-right-radius: 2rem;
-  }
-  .navigation-list {
-      flex-direction: column;
-      height: 100%;
+    flex-direction: row;
+    width: 100%;
   }
 
   .home-section {
-      margin-left: 3rem;
-      height: 100%;
+    height: calc(100vh - 5rem);
+    margin: 0;
+    margin-bottom: 3rem;
+    position: relative;
   }
+}
+
+@media only screen and (min-width:600px) {
+  .navigation-component {
+    width: 3rem;
+
+  }
+
+  .navigation-bar {
+    width: 3rem;
+    height: 20rem;
+    margin-top: 3rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+  .navigation-list {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .home-section {
+    margin-left: 3rem;
+    height: 100%;
+  }
+}
+
+/*--------------------------CSS properties for pages--------------------------*/
+/*----------------------------------------------------------------------------*/
+
+/*-----------------------Auth Pages---------------------------*/
+/*------------------------------------------------------------*/
+.auth-component {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.auth-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-title svg {
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
+.auth-title h1 {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.auth-form {
+  width: 100%;
+  height: calc(100% - 4rem)
+}
+
+.auth-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*---------------------Invoices Page---------------------------*/
 /*------------------------------------------------------------*/
-
-.invoices-searchbar{
+.invoices-searchbar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
-.invoices-list-component{
+.invoices-list-component {
+  max-height: 35rem;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
+  position: relative;
 }
 
-.invoices-list-title{
+.invoices-list-title {
+  padding: .5rem;
+  position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
-  display:flex;
+  display: flex;
   align-items: center;
   gap: .5rem;
+  background-color: var(--color-background);
 }
 
-.invoices-list-title h1{
+.invoices-list-title h1 {
   color: inherit;
 }
 
-.invoices-list-separator{
+.invoices-list-separator {
   flex: 1;
   height: 3px;
   border-radius: 1.5px;
@@ -539,30 +591,30 @@ input[type="file"]{
 
 .invoice {
   background: white;
-  padding:1rem;
+  padding: 1rem;
   border: none;
   border-radius: 1rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.invoice:hover{
+.invoice:hover {
   background-color: var(--color-card-hover);
 }
 
-.invoice-state-pending{
+.invoice-state-pending {
   text-align: right;
   font-size: .9rem;
   color: var(--color-darkGray)
 }
 
-.invoice-state-validated{
+.invoice-state-validated {
   text-align: right;
   font-size: .9rem;
   color: var(--color-primary)
 }
 
-.invoice-state-declined{
+.invoice-state-declined {
   text-align: right;
   font-size: .9rem;
   color: var(--color-error)
@@ -572,102 +624,107 @@ input[type="file"]{
   margin-top: .25rem;
   display: flex;
   gap: .25rem;
-  
+
 }
-.invoice-date-information span{
-  
+
+.invoice-date-information span {
+
   color: var(--color-darkGray);
   font-size: .9rem;
 }
+
 .invoice-price {
   display: flex;
   justify-content: space-between;
 }
 
-.invoice-description{
+.invoice-description {
   margin-top: .25rem;
   overflow: hidden;
   height: 4.75rem;
 }
 
-.invoice-description p{
+.invoice-description p {
   color: var(--color-darkGray);
   font-size: .8rem;
 }
 
 .invoice-separator {
-  margin-bottom:.5rem;
+  margin-bottom: .5rem;
   margin-top: .5rem;
   border: 1px solid var(--color-lightGray);
   border-radius: 1px;
 }
 
 
-.invoices-empty-message{
+.invoices-empty-message {
   color: var(--color-darkGray)
 }
 
+/*--------------------Add invoice Page------------------------*/
 /*------------------------------------------------------------*/
-.add-invoice-component{
+.add-invoice-component {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.add-invoice-card-content{
+.add-invoice-card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-.add-invoice-form{
+.add-invoice-form {
   width: 100%;
   height: 32rem;
 }
+
 /*---------------------Invoice Page---------------------------*/
 /*------------------------------------------------------------*/
 .invoice-page {
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
-.invoice-header{
+.invoice-header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, auto));
   gap: 1rem;
   padding: 1rem;
 }
 
-.invoice-user-data{
+.invoice-user-data {
   width: 15rem;
   display: flex;
   flex-direction: column;
   align-items: left;
 }
 
-.invoice-user-data h1{
+.invoice-user-data h1 {
   color: var(--color-primary);
 }
-.invoice-user-image{
+
+.invoice-user-image {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.invoice-user-image img{
+.invoice-user-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.invoice-details{
+.invoice-details {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
 }
 
-.invoice-concept{
+.invoice-concept {
   display: flex;
   justify-content: center;
   align-items: start;
@@ -677,13 +734,13 @@ input[type="file"]{
   position: relative;
 }
 
-.invoice-total-rows table{
- width: 100%;
+.invoice-total-rows table {
+  width: 100%;
 }
 
-.invoice-concept table{
+.invoice-concept table {
   width: 100%;
-  
+
 }
 
 .invoice-concept thead th {
@@ -692,79 +749,62 @@ input[type="file"]{
   left: 0;
 }
 
-th{
+.invoice-concept th {
   background-color: #67AEE1;
 }
 
-.invoice-button-box{
-  margin-top: 1rem;
+.invoice-button-box {
+  margin-top: 3rem;
   display: flex;
   justify-content: center;
   gap: .25rem;
 }
-.invoice-button{
+
+.invoice-button {
   padding: .25rem;
   border: none;
   border-radius: .25rem;
   color: white;
-  
-  cursor: pointer;
-}
 
-.button-primary{
-  background-color: var(--color-primary);
-}
-.button-secondary{
-  background-color: var(--color-complementary);
+  cursor: pointer;
 }
 
 /*---------------------Profile Page---------------------------*/
 /*------------------------------------------------------------*/
-
-.profile-page{
+.profile-page {
   width: 100%;
-  height: calc(100vh - 2rem - 3px);
+  height: 100%;
   display: flex;
   justify-content: center;
 }
 
-.profile-grid{
-  display:grid;
-  grid-template-columns: 25% 75%;
-  height: 100%;
-}
-
-.profile-navigation ul{
+.profile-page-section {
   margin-top: 1rem;
-  height: calc(100% - 2rem);
-  border-right: 2px solid var(--color-darkGray);
+  width: 100%;
+  height: 30rem;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
-.profile-navigation li{
-  color: var(--color-darkGray);
-  height: 1.5rem;
+.profile-page-signout {
+  color: var(--color-complementary);
   cursor: pointer;
 }
-.profile-navigation li:hover{
-  background-color: hsl(0, 0%, 95%);
-}
-.profile-navigation li:last-child{
-  color: var(--color-complementary);
-  
-}
+
 
 
 /*----------------------Inbox Page----------------------------*/
 /*------------------------------------------------------------*/
-.inbox-page{
-  display:flex;
+.inbox-page {
+  display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
 }
 
 .inbox-notification-component {
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -775,24 +815,27 @@ th{
   cursor: pointer;
 }
 
-.inbox-notification-component:hover{
+.inbox-notification-component:hover {
   background-color: var(--color-card-hover);
 }
-.inbox-notification-image{
+
+.inbox-notification-image {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.inbox-notification-image img{
+.inbox-notification-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.inbox-notification-content{
+
+.inbox-notification-content {
   width: calc(100% - 6rem);
 }
+
 .inbox-notification-title {
   font-size: 1.1rem;
 }
@@ -806,19 +849,13 @@ th{
   gap: .25rem
 }
 
-.inbox-notification-timestamp span{
+.inbox-notification-timestamp span {
   font-size: .8rem;
   color: var(--color-darkGray);
   margin-top: .25rem;
 }
 
-.inbox-notification-button-box{
-  display: flex;
-  justify-content: center;
-  gap: .25rem;
-}
-
-.inbox-notification-validate-button{
+.inbox-notification-validate-button {
   margin-top: .25rem;
   padding: .25rem .5rem;
   background-color: var(--color-primary);
@@ -828,7 +865,7 @@ th{
   cursor: pointer;
 }
 
-.inbox-notification-decline-button{
+.inbox-notification-decline-button {
   margin-top: .25rem;
   padding: .25rem .5rem;
   background-color: var(--color-complementary);
@@ -838,76 +875,23 @@ th{
   cursor: pointer;
 }
 
-.inbox-empty-message{
+.inbox-empty-message {
   color: var(--color-darkGray)
 }
 
 /*--------------------Statistics Page-------------------------*/
 /*------------------------------------------------------------*/
-/*.statistics-page{
-  display: grid;
-  grid-template-rows: 20rem 25rem;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.statistics-chart-1{
-  display:flex;
-  justify-content: center;
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.statistics-chart-2{
-  display:flex;
-  justify-content: center;
-  grid-row: 1;
-  grid-column: 2;
-}
-
-.statistics-chart-3{
-  display:flex;
-  justify-content: center;
-  grid-row: 2;
-  grid-column: 1 / span 2;
-}*/
-
 .statistics-page {
-  display: grid;
-  grid-template-rows: 20rem 25rem;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-    "hijo1 hijo2"
-    "hijo3 hijo3";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
-.statistics-chart-1 {
-  display:flex;
+.statistics-chart {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  grid-area: hijo1;
-}
-
-.statistics-chart-2 {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  grid-area: hijo2;
-}
-
-.statistics-chart-3 {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  grid-area: hijo3;
-}
-
-@media (max-width: 600px) {
-  .statistics-page {
-    grid-template-areas: 
-      "hijo1"
-      "hijo2"
-      "hijo3";
-  }
+  width: 100%;
+  max-width: 25rem;
 }

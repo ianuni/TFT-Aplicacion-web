@@ -6,18 +6,17 @@ import { useAuth } from "./context/AuthContext";
 import InvoicePage from "./pages/Invoices";
 import AddInvoice from "./pages/AddInvoice";
 import Invoice from "./pages/Invoice";
-import Configuration from "./pages/Configuration";
+import Profile from "./pages/Profile";
 import Inbox from "./pages/Inbox";
 import Statistics from "./pages/Statistics";
+import ProfileDetails from "./pages/ProfileDetails";
+import ProfilePreferences from "./pages/ProfilePreferences";
 
 function App() {
-  const {currentUser, loading} = useAuth();
+  const {currentUser} = useAuth();
 
 
   const ProtectedRoute = ({children}) => {
-    if(loading){
-      return "Loading"
-    }
     if(!currentUser){
       return <Navigate to="/signin"/>
     } 
@@ -29,18 +28,19 @@ function App() {
     
     <Routes>
       <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}>
+        <Route index element={<InvoicePage/>}/>
         <Route path="invoices">
-          <Route index element={<InvoicePage/>}>
-            
-          </Route>
+          <Route index element={<InvoicePage/>}/>
           <Route path="add" element={<AddInvoice/>}/>
           <Route path=":id" element={<Invoice/>}/>
         </Route>
         
         <Route path="inbox" element={<Inbox/>}/>
         <Route path="statistics" element={<Statistics/>}/>
-        <Route path="profile" element={<Configuration/>}>
-
+        <Route path="profile" element={<Profile/>}>
+          <Route index element={<ProfileDetails/>}/>
+          <Route path="details" element={<ProfileDetails/>}/>
+          <Route path="preferences" element={<ProfilePreferences/>}/>
         </Route>
       </Route>
       <Route path="signin" element={<SignIn/>}/>

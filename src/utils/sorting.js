@@ -1,27 +1,26 @@
-export function sortOldest(a, b) {
-    const timestampA = a.timestamp
-    const timestampB = b.timestamp
-  
-    return timestampA - timestampB;
-}
+export const sortingSelector = {
+    oldest: (a, b) => {
+        const timestampA = a.timestamp
+        const timestampB = b.timestamp
 
-export const sortNewest = (a, b) => {
-    const timestampA = a.timestamp
-    const timestampB = b.timestamp
-  
-    return timestampB - timestampA;
-}
+        return timestampA - timestampB;
+    },
+    newest: (a, b) => {
+        const timestampA = a.timestamp
+        const timestampB = b.timestamp
 
-export function sortHigherTotal(a, b) {
-    const totalA = a.total
-    const totalB = b.total
-  
-    return totalB - totalA;
-}
+        return timestampB - timestampA;
+    },
+    highest: (a, b) => {
+        const totalA = a.total
+        const totalB = b.total
 
-export function sortLowestTotal(a, b) {
-    const totalA = a.total
-    const totalB = b.total
-  
-    return totalA - totalB;
+        return totalB - totalA;
+    },
+    lowest: (a, b) => {
+        const totalA = a.total
+        const totalB = b.total
+
+        return totalA - totalB;
+    }
 }

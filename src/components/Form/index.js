@@ -2,6 +2,8 @@ import React, {useEffect, useState}from 'react'
 import Button from '../Button'
 import {ReactComponent as Step} from "../../assets/circle-unselected.svg"
 import {ReactComponent as SelectedStep} from "../../assets/circle-selected.svg"
+import { initialProductForm } from '../../utils/initialForms'
+import { useForm } from '../../hooks/useForm'
 
 const Form = ({children, onSubmit, errorMessage}) => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -91,60 +93,75 @@ export const SubmitButton = ({children}) => {
     )
 }
 
-export const TextInput = ({label, name, placeholder, onBlur, onChange, error}) => {
+export const TextInput = ({label, name, placeholder, onBlur, onChange, error, value}) => {
     return (
       <div className="form-input">
+        <div className="form-input-box">
         {label && <label>{label}</label>}
-        <input onBlur={onBlur} onChange={onChange} type="text" name={name} placeholder={placeholder}/>
+        <input value={value} onBlur={onBlur} onChange={onChange} type="text" name={name} placeholder={placeholder}/>
         {error && <small>{error}</small>}
+        </div>
+        
       </div>
     )
   }
 
-export const PasswordInput = ({label, name, placeholder, onBlur, onChange, error}) => {
+export const PasswordInput = ({label, name, placeholder, onBlur, onChange, error, value}) => {
     return (
       <div className="form-input">
+        <div className="form-input-box">
         {label && <label>{label}</label>}
-        <input onBlur={onBlur} onChange={onChange} type="password" name={name} placeholder={placeholder}/>
+        <input value={value} onBlur={onBlur} onChange={onChange} type="password" name={name} placeholder={placeholder}/>
         {error && <small>{error}</small>}
+        </div>
+        
       </div>
     )
 }
 
-export const NumberInput = ({label, name, placeholder, onBlur, onChange, error}) => {
+export const NumberInput = ({label, name, placeholder, onBlur, onChange, error, value}) => {
   return (
     <div className="form-input">
+      <div className="form-input-box">
       {label && <label>{label}</label>}
-      <input onBlur={onBlur} onChange={onChange} type="number" name={name} placeholder={placeholder}/>
+      <input value={value} onBlur={onBlur} onChange={onChange} type="number" name={name} placeholder={placeholder}/>
       {error && <small>{error}</small>}
+      </div>
+      
     </div>
   )
 }
 
-export const SelectInput = ({label, name, placeholder, onBlur, onChange, error, items}) => {
+export const SelectInput = ({label, name, placeholder, onBlur, onChange, error, items, value}) => {
     return (
       <div className="form-input">
+        <div className="form-input-box">
         {label && <label>{label}</label>}
-        <select onBlur={onBlur} onChange={onChange} name={name} placeholder={placeholder}>
+        <select value={value} onBlur={onBlur} onChange={onChange} name={name} placeholder={placeholder}>
           <option></option>
           {items.map(item => <option key={item} value={item}>{item}</option>)}      
         </select>
         {error && <small>{error}</small>}
+        </div>
+        
       </div>
     )
 }
 
-export const LongTextInput = ({label, name, placeholder, onBlur, onChange, error, maxLength}) => {
+export const LongTextInput = ({label, name, placeholder, onBlur, onChange, error, maxLength, value}) => {
     return (
         <div className="form-input">
-          {label && <label>{label}</label>}
-          <textarea name={name} maxLength={maxLength} onBlur={onBlur} onChange={onChange} type="text" placeholder={placeholder}/>
-          {error && <small>{error}</small>}
+          <div className="form-input-box">
+            {label && <label>{label}</label>}
+            <textarea value={value} name={name} maxLength={maxLength} onBlur={onBlur} onChange={onChange} type="text" placeholder={placeholder}/>
+            {error && <small>{error}</small>}
+          </div>
+          
         </div>
       )
 }
 
-export const ImageInput = ({label, name, error, onChange, onBlur}) => {
+export const ImageInput = ({label, name, error, onChange, onBlur, value}) => {
     const [fileName, setFileName] = useState("No selected");
   
     const updateImage = (e) => {
@@ -154,11 +171,13 @@ export const ImageInput = ({label, name, error, onChange, onBlur}) => {
   
     return (
       <div className="form-input">
+        <div className="form-input-box">
         {label && <label>{label}</label>}
-        <input  id="image-input" type="file" name={name}  accept="image/*" onChange={updateImage} onBlur={onBlur}/>
+        <input  value={value} id="image-input" type="file" name={name}  accept="image/*" onChange={updateImage} onBlur={onBlur}/>
         <Button onClick={(e) => {e.preventDefault(); document.querySelector("#image-input").click()}}>Select</Button>
         <span style={{color: "var(--color-darkGray)", fontSize: ".8rem", margin: "0 .5rem"}}>{fileName}</span>
         {error && <small>{error}</small>}
+        </div>
       </div>
     )
   }
@@ -177,7 +196,7 @@ export const ImageInput = ({label, name, error, onChange, onBlur}) => {
     }
 
     function handleClick(selection) {
-      onChange(name, selection.id);
+      onChange({[name]: selection.id});
       setSelection(selection);
       setResults(null);
 
@@ -185,6 +204,7 @@ export const ImageInput = ({label, name, error, onChange, onBlur}) => {
 
     return (
       <div className="form-input">
+        <div className="form-input-box">
         {label && <label>{label}</label>}
         <input onBlur={onBlur} onChange={updateSearch} type="text" name={name} placeholder={placeholder}/>
         { results && 
@@ -207,67 +227,79 @@ export const ImageInput = ({label, name, error, onChange, onBlur}) => {
           </div>
         }
         {error && <small>{error}</small>}
+        </div>
+        
       </div>
     )
   }
 
   export const ProductsInput = ({onChange, error}) => {
-    const [nextProduct, setNextProduct] = useState({
-      name: "", 
-      amount: "", 
-      price: "", 
-      sale: ""})
-    const [products, setProducts] = useState({});
+    const {form, errors, handleChange, handleBlur, handleSubmit, updateForm} = useForm(initialProductForm, handleAdd)
+    const [products, setProducts] = useState();
 
-    const handleAdd = (e) => {
-      e.preventDefault()
-      const productsUpdate = {
-        ...products,
-        [nextProduct.name]: {
-          amount: nextProduct.amount,
-          price: nextProduct.price,
-          sale: nextProduct.sale
+    function handleAdd(form) {
+      setProducts((prevProducts) => {
+        const updatedProducts = {
+          ...prevProducts,
+          [form.productName]: {
+            amount: form.productAmount,
+            price: form.productPrice,
+            sale: form.productSale
         }}
-      setProducts(productsUpdate)
-      setNextProduct({
-        name: "", 
-        amount: "", 
-        price: "", 
-        sale: ""})
-      onChange("concept", productsUpdate);
+        onChange({concept: updatedProducts});
+        return updatedProducts
+      })
+      updateForm(initialProductForm);
     }
-
-    const handleDelete = (key) => {
-      const productsUpdate = products
-      delete productsUpdate[key];
-      setProducts(productsUpdate);
-      onChange("concept", productsUpdate);
+    
+    function handleDelete(key) {
+      setProducts((prevObjects) => {
+        const updatedProducts = { ...prevObjects }
+        delete updatedProducts[key]
+        onChange({concept: updatedProducts});
+        return updatedProducts
+      })
+      
+      
     }
 
     return(
-      <div>
-        <label>Products</label>
-        <div className="form-product-input-group"> 
-          <input type="text" value={nextProduct.name} placeholder="Name" name="productName" onChange={(e) => setNextProduct(prev => ({...prev, name: e.target.value}))}/>
-          <input type="number" value={nextProduct.amount} placeholder="Amount" name="productAmount" onChange={(e) => setNextProduct(prev => ({...prev, amount: e.target.value}))}/>
-          <input type="number" value={nextProduct.price} placeholder="Price" name="productPrice" onChange={(e) => setNextProduct(prev => ({...prev, price: e.target.value}))}/>
-          <input type="number" value={nextProduct.sale} placeholder="Sale" name="productSale" onChange={(e) => setNextProduct(prev => ({...prev, sale: e.target.value}))}/>
-          <Button onClick={handleAdd}>Add</Button>
+      <div className='form-products-input'>
+        <label>Concept</label>
+        <TextInput value={form.productName} name="productName" label="Product" placeholder="Name" onChange={handleChange} onBlur={handleBlur} error={errors.productName}/>
+        <NumberInput value={form.productAmount} name="productAmount" placeholder="Amount(0.00)" onChange={handleChange} onBlur={handleBlur} error={errors.productAmount}/>
+        <NumberInput value={form.productPrice} name="productPrice" placeholder="Price(0.00)" onChange={handleChange} onBlur={handleBlur} error={errors.productPrice}/>
+        <NumberInput value={form.productSale} name="productSale" placeholder="Discount(%)" onChange={handleChange} onBlur={handleBlur} error={errors.productSale}/>
+        <Button onClick={handleSubmit}>Add</Button>
+        {error && <small>{error}</small>}
+        <div className="form-products-input-list">
+          { products &&
+            <table>
+              <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Amount</th>
+                    <th>Unitary Price</th>
+                    <th>Sale</th>
+                    <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(products).map(([key, value]) => (
+                  <tr key={key}>
+                      <td>{key}</td>
+                      <td>{value.amount}</td>
+                      <td>{value.price}</td>
+                      <td>{value.sale}</td>
+                      <td><Button type="button" color="secondary" onClick={() => handleDelete(key)}>Delete</Button></td>
+                  </tr>
+                ))}   
+              </tbody>
+            </table>
+          }
+          
         </div>
         
-        <ul>
-          {Object.keys(products).map(key => (
-            <li className="form-product-product-item" key={key}>
-              <span>{key}</span>
-              <span>{products[key].amount}</span>
-              <span>{products[key].price}</span>
-              <span>{products[key].sale}</span>
-              <Button onClick={(e) => {e.preventDefault(); handleDelete(key)}}>Delete</Button>
-            </li>
-          ))}
-        </ul>
-
-        {error && <small>{error}</small>}
       </div>
     )
   }

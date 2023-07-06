@@ -11,7 +11,7 @@ const TabMenu = ({children}) => {
 }
 
 export const Tab = ({name, path}) => {
-    const state = (path === useLocation().pathname)
+    const state = (useLocation().pathname.includes(path))
 
     return(
         

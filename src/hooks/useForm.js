@@ -49,10 +49,10 @@ export const useForm= (initialForm, actionOnSubmit) => {
     }
   }
 
-  const updateForm = (name, value) => {
+  const updateForm = (newform) => {
     setForm({
       ...form,
-      [name]: value
+      ...newform
   });
   
   }
