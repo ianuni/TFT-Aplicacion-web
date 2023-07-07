@@ -35,8 +35,8 @@ function Inbox() {
 }
 
 function Notification({ notification }) {
-    const [validateDialog, setValidateDialog] = useState(false)
-    const [declineDialog, setDeclineDialog] = useState(false)
+    const [validateDialog, setValidateDialog] = useState(false);
+    const [declineDialog, setDeclineDialog] = useState(false);
     const { currentUser } = useAuth();
     const navigate = useNavigate();
     const date = new Date(notification.timestamp);
@@ -59,14 +59,14 @@ function Notification({ notification }) {
     return (
         <>
             {validateDialog && <Dialog title="Validate invoice" body="Are you sure you want to validate this invoice?"
-                confirmAction={(e) => {
+                confirmAction={() => {
                     handleValidate()
                     setValidateDialog(false)
                 }}
                 cancelAction={() => setValidateDialog(false)} />
             }
             {declineDialog && <Dialog title="Decline invoice" body="Are you sure you want to decline this invoice?"
-                confirmAction={(e) => {
+                confirmAction={() => {
                     handleDecline()
                     setDeclineDialog(false)
                 }}

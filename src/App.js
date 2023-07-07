@@ -10,7 +10,6 @@ import Profile from "./pages/Profile";
 import Inbox from "./pages/Inbox";
 import Statistics from "./pages/Statistics";
 import ProfileDetails from "./pages/ProfileDetails";
-import ProfilePreferences from "./pages/ProfilePreferences";
 
 function App() {
   const {currentUser} = useAuth();
@@ -40,7 +39,6 @@ function App() {
         <Route path="profile" element={<Profile/>}>
           <Route index element={<ProfileDetails/>}/>
           <Route path="details" element={<ProfileDetails/>}/>
-          <Route path="preferences" element={<ProfilePreferences/>}/>
         </Route>
       </Route>
       <Route path="signin" element={<SignIn/>}/>

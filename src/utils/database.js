@@ -25,12 +25,13 @@ export const signUp = async (form) => {
 }
 
 export const deleteInvoice = async (idToken, invoiceId) => {
-  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/invoice/" + invoiceId, {
+  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/invoice/" + invoiceId, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${idToken}`
     }
   })
+  return response.json()
 }
 
 export const addInvoice = async (idToken, invoiceRequest) => {
@@ -46,30 +47,33 @@ export const addInvoice = async (idToken, invoiceRequest) => {
 }
 
 export const validateInvoice = async (idToken, invoiceId) => {
-  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/validate/invoice/" + invoiceId, {
+  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/validate/invoice/" + invoiceId, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${idToken}`
     }
   })
+  return response.json()
 }
 
 export const declineInvoice = async (idToken, invoiceId) => {
-  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/decline/invoice/" + invoiceId, {
+  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/decline/invoice/" + invoiceId, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${idToken}`
     }
   })
+  return response.json()
 }
 
 export const deleteNotification = async (idToken, notificationId) => {
-  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/notification/" + notificationId, {
+  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/notification/" + notificationId, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${idToken}`
     }
   })
+  return response.json()
 }
 
 export const getUserByName = async (idToken, name, callback) => {
@@ -81,4 +85,14 @@ export const getUserByName = async (idToken, name, callback) => {
   })
     .then((response) => response.json())
     .then(callback)
+}
+
+export const getMyUser = async (idToken) => {
+  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/user", {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${idToken}`
+    }
+  })
+  return response.json()
 }
