@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import Dialog from '../../components/Dialog'
 
 function Inbox() {
-    const { currentUser } = useAuth()
+    const { currentUser} = useAuth()
     const [notifications, setNotifications] = useState([])
 
     useEffect(() => {
