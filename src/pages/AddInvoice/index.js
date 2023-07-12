@@ -37,8 +37,8 @@ function AddInvoice() {
                         <div className='add-invoice-form'>
                             <Form onSubmit={(e) => { e.preventDefault(); setDialog(true) }} errorMessage={error}>
                                 <FormStep>
-                                    <UserInput label="Customer" name="customer" onChange={updateForm} error={errors.customer} />
-                                    <LongTextInput label="Observations" name="observations" onBlur={handleBlur} onChange={handleChange} error={errors.observations} />
+                                    <UserInput placeholder="Search customer" label="Customer" name="customer" onChange={updateForm} error={errors.customer} />
+                                    <LongTextInput placeholder="Insert invoice observations" label="Observations" name="observations" onBlur={handleBlur} onChange={handleChange} error={errors.observations} />
                                 </FormStep >
                                 <FormStep>
                                     <ProductsInput onChange={updateForm} error={errors.concept} />

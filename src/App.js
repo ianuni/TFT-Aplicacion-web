@@ -12,37 +12,36 @@ import Statistics from "./pages/Statistics";
 import ProfileDetails from "./pages/ProfileDetails";
 
 function App() {
-  const {currentUser} = useAuth();
 
-
-  const ProtectedRoute = ({children}) => {
-    if(!currentUser){
-      return <Navigate to="/signin"/>
-    } 
+  const { currentUser } = useAuth();
+  const ProtectedRoute = ({ children }) => {
+    if (!currentUser) {
+      return <Navigate to="/signin" />
+    }
     return (children);
-    
+
   }
 
   return (
-    
+
     <Routes>
-      <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}>
-        <Route index element={<InvoicePage/>}/>
+      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}>
+        <Route index element={<InvoicePage />} />
         <Route path="invoices">
-          <Route index element={<InvoicePage/>}/>
-          <Route path="add" element={<AddInvoice/>}/>
-          <Route path=":id" element={<Invoice/>}/>
+          <Route index element={<InvoicePage />} />
+          <Route path="add" element={<AddInvoice />} />
+          <Route path=":id" element={<Invoice />} />
         </Route>
-        
-        <Route path="inbox" element={<Inbox/>}/>
-        <Route path="statistics" element={<Statistics/>}/>
-        <Route path="profile" element={<Profile/>}>
-          <Route index element={<ProfileDetails/>}/>
-          <Route path="details" element={<ProfileDetails/>}/>
+
+        <Route path="inbox" element={<Inbox />} />
+        <Route path="statistics" element={<Statistics />} />
+        <Route path="profile" element={<Profile />}>
+          <Route index element={<ProfileDetails />} />
+          <Route path="details" element={<ProfileDetails />} />
         </Route>
       </Route>
-      <Route path="signin" element={<SignIn/>}/>
-      <Route path="signup" element={<SignUp/>}/>
+      <Route path="signin" element={<SignIn />} />
+      <Route path="signup" element={<SignUp />} />
     </Routes>
   );
 }

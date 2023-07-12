@@ -38,40 +38,39 @@ function SignUp() {
             <Logo />
             <h1>Coinmo</h1>
           </div>
-          <Card width="25rem" height="35.25rem">
-            <TabMenu>
-              <Tab name="Sign Up" path="/signup" />
-              <Tab name="Sign In" path="/signin" />
-            </TabMenu>
-            <div className='auth-card-content'>
+          <div className='auth-card-content'>
+            <Card width="25rem" height="35.25rem">
+              <TabMenu>
+                <Tab name="Sign Up" path="/signup" />
+                <Tab name="Sign In" path="/signin" />
+              </TabMenu>
               <div className='auth-form'>
                 <Form onSubmit={(e) => { e.preventDefault(); setDialog(true) }} errorMessage={error}>
                   <FormStep name="Info">
-                    <TextInput label="Nombre" name="name" onChange={handleChange} onBlur={handleBlur} error={errors.name} />
-                    <TextInput label="NIF" name="nif" onChange={handleChange} onBlur={handleBlur} error={errors.nif} />
-                    <NumberInput label="Phone Number" name="phoneNumber" onChange={handleChange} onBlur={handleBlur} error={errors.phoneNumber} />
-                    <SelectInput label="Category" name="category" items={categories} onChange={handleChange} onBlur={handleBlur} error={errors.category} />
+                    <TextInput placeholder="Insert your name" label="Nombre" name="name" onChange={handleChange} onBlur={handleBlur} error={errors.name} />
+                    <TextInput placeholder="Insert your NIF" label="NIF" name="nif" onChange={handleChange} onBlur={handleBlur} error={errors.nif} />
+                    <NumberInput placeholder="Insert your phone Number" label="Phone Number" name="phoneNumber" onChange={handleChange} onBlur={handleBlur} error={errors.phoneNumber} />
+                    <SelectInput placeholder="Insert your category" label="Category" name="category" items={categories} onChange={handleChange} onBlur={handleBlur} error={errors.category} />
                     <ImageInput label="Photo" name="image" onChange={handleChange} onBlur={handleBlur} error={errors.image} />
-                    <LongTextInput label="Description" name="description" onChange={handleChange} onBlur={handleBlur} error={errors.description} />
+                    <LongTextInput placeholder="Insert description" label="Description" name="description" onChange={handleChange} onBlur={handleBlur} error={errors.description} />
                   </FormStep>
                   <FormStep name="Info">
-                    <TextInput label="Address" name="address" onChange={handleChange} onBlur={handleBlur} error={errors.address} />
-                    <TextInput label="Apartment" name="apartment" onChange={handleChange} onBlur={handleBlur} error={errors.apartment} />
-                    <TextInput label="City" name="city" onChange={handleChange} onBlur={handleBlur} error={errors.city} />
-                    <TextInput label="Postal Code" name="postalCode" onChange={handleChange} onBlur={handleBlur} error={errors.postalCode} />
-                    <TextInput label="Country" name="country" onChange={handleChange} onBlur={handleBlur} error={errors.country} />
+                    <TextInput placeholder="Insert your street" label="Street" name="address" onChange={handleChange} onBlur={handleBlur} error={errors.address} />
+                    <TextInput placeholder="Insert your apartment" label="Apartment" name="apartment" onChange={handleChange} onBlur={handleBlur} error={errors.apartment} />
+                    <TextInput placeholder="Insert your city" label="City" name="city" onChange={handleChange} onBlur={handleBlur} error={errors.city} />
+                    <TextInput placeholder="Insert your postal code" label="Postal Code" name="postalCode" onChange={handleChange} onBlur={handleBlur} error={errors.postalCode} />
+                    <TextInput placeholder="Insert your country" label="Country" name="country" onChange={handleChange} onBlur={handleBlur} error={errors.country} />
                   </FormStep>
                   <FormStep>
-                    <TextInput label="Email" name="email" onChange={handleChange} onBlur={handleBlur} error={errors.email} />
-                    <PasswordInput label="Password" name="password" onChange={handleChange} onBlur={handleBlur} error={errors.password} />
-                    <PasswordInput label="Confirmation" name="confirmationPassword" onChange={handleChange} onBlur={handleBlur} error={errors.confirmationPassword} />
+                    <TextInput placeholder="Insert your email" label="Email" name="email" onChange={handleChange} onBlur={handleBlur} error={errors.email} />
+                    <PasswordInput placeholder="Insert your password" label="Password" name="password" onChange={handleChange} onBlur={handleBlur} error={errors.password} />
+                    <PasswordInput placeholder="Repeat password" label="Confirmation" name="confirmationPassword" onChange={handleChange} onBlur={handleBlur} error={errors.confirmationPassword} />
                     <SubmitButton>Sign Up</SubmitButton>
                   </FormStep>
                 </Form>
               </div>
-            </div>
-
-          </Card>
+            </Card>
+          </div>
         </div>
       </Container>
     </>

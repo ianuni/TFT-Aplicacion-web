@@ -48,6 +48,7 @@ fieldset {
 /*------------------------------------------------------------*/
 .background {
   position: relative;
+  width: 100%;
   min-height: 100vh;
   background-color: var(--color-background);
 }
@@ -518,7 +519,7 @@ input[type="file"] {
 
 .auth-title svg {
   height: 4.5rem;
-  width: 4.5rem;
+  max-width: 4.5rem;
 }
 
 .auth-title h1 {
@@ -532,9 +533,9 @@ input[type="file"] {
 }
 
 .auth-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display:flex;
+  justify-content: center;
+  width: 100%
 }
 
 /*---------------------Invoices Page---------------------------*/

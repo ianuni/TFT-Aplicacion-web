@@ -2,6 +2,8 @@ import { db, storage } from "../firebase"
 import { collection, doc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
+const APIurl = "https://app-aubgs2rqcq-uc.a.run.app"
+
 export const signUp = async (form) => {
   const uid = doc(collection(db, "users")).id
   let photoURL = null;
@@ -10,7 +12,7 @@ export const signUp = async (form) => {
     await uploadBytes(pictureRef, form.image);
     photoURL = await getDownloadURL(pictureRef)
   }
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/users", {
+  const response = await fetch(APIurl + "/coinmo/users", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,7 +27,7 @@ export const signUp = async (form) => {
 }
 
 export const deleteInvoice = async (idToken, invoiceId) => {
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/invoice/" + invoiceId, {
+  const response = await fetch(APIurl + "/coinmo/invoice/" + invoiceId, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${idToken}`
@@ -35,7 +37,7 @@ export const deleteInvoice = async (idToken, invoiceId) => {
 }
 
 export const addInvoice = async (idToken, invoiceRequest) => {
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/invoice", {
+  const response = await fetch(APIurl + "/coinmo/invoice", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -47,7 +49,7 @@ export const addInvoice = async (idToken, invoiceRequest) => {
 }
 
 export const validateInvoice = async (idToken, invoiceId) => {
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/validate/invoice/" + invoiceId, {
+  const response = await fetch(APIurl + "/coinmo/validate/invoice/" + invoiceId, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${idToken}`
@@ -57,7 +59,7 @@ export const validateInvoice = async (idToken, invoiceId) => {
 }
 
 export const declineInvoice = async (idToken, invoiceId) => {
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/decline/invoice/" + invoiceId, {
+  const response = await fetch(APIurl + "/coinmo/decline/invoice/" + invoiceId, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${idToken}`
@@ -67,7 +69,7 @@ export const declineInvoice = async (idToken, invoiceId) => {
 }
 
 export const deleteNotification = async (idToken, notificationId) => {
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/notification/" + notificationId, {
+  const response = await fetch(APIurl + "/coinmo/notification/" + notificationId, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${idToken}`
@@ -76,19 +78,23 @@ export const deleteNotification = async (idToken, notificationId) => {
   return response.json()
 }
 
-export const getUserByName = async (idToken, name, callback) => {
-  fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/user/" + name.toLowerCase(), {
+export const getUserByName = async (name) => {
+  const response = await fetch(APIurl + "/coinmo/user/" + name.toLowerCase())
+  return response.json()
+}
+
+export const getMyUser = async (idToken) => {
+  const response = await fetch(APIurl + "/coinmo/user", {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${idToken}`
     }
   })
-    .then((response) => response.json())
-    .then(callback)
+  return response.json()
 }
 
-export const getMyUser = async (idToken) => {
-  const response = await fetch("http://localhost:5000/coinmo-8a9cd/us-central1/app/coinmo/user", {
+export const getInvoice = async (idToken, invoiceId) => {
+  const response = await fetch(APIurl + "/coinmo/invoice/" + invoiceId, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${idToken}`

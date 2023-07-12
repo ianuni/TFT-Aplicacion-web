@@ -40,21 +40,29 @@ function SignIn() {
           <Logo />
           <h1>Coinmo</h1>
         </div>
-        <Card width="25rem" height="35.25rem">
-          <TabMenu>
-            <Tab name="Sign Up" path="/signup" />
-            <Tab name="Sign In" path="/signin" />
-          </TabMenu>
-          <div className='auth-form'>
-            <Form onSubmit={(handleSubmit)} errorMessage={error}>
-              <FormStep>
-                <TextInput label="Email" name="email" onChange={handleChange} onBlur={handleBlur} error={errors.email} />
-                <PasswordInput label="Password" name="password" onChange={handleChange} onBlur={handleBlur} error={errors.password} />
-                <SubmitButton>Sign In</SubmitButton>
-              </FormStep>
-            </Form>
-          </div>
-        </Card>
+        <div className='auth-card-content'>
+          <Card width="25rem" height="35.25rem">
+            <TabMenu>
+              <Tab name="Sign Up" path="/signup" />
+              <Tab name="Sign In" path="/signin" />
+            </TabMenu>
+            <div className='auth-form'>
+              <Form onSubmit={(handleSubmit)} errorMessage={error}>
+                <FormStep>
+                  <TextInput  placeholder="Insert your email" label="Email" name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={errors.email} />
+                  <PasswordInput placeholder="Insert your password" label="Password" name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={errors.password} />
+                  <SubmitButton>Sign In</SubmitButton>
+                </FormStep>
+              </Form>
+            </div>
+          </Card>
+        </div>
       </div>
     </Container>
   )
