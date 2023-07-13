@@ -8,7 +8,6 @@ import Dialog from '../../components/Dialog'
 
 function Inbox() {
     const [notifications, setNotifications] = useState([])
-
     const { currentUser } = useAuth()
     
     useEffect(() => {
