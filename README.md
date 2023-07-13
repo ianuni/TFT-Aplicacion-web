@@ -1,4 +1,5 @@
-# Aplicación Web
+# TFT-ianmct-Aplicación Web
+Trabajo de fin de título de Ian Mar Castro Toledo
 
 Este [proyecto](https://coinmo-8a9cd.web.app/signin) ha sido creado utilizando la librería React.js para Node.js junto con el arrancador create-react-app. A continuación se incluye el listado de dependencias a instalar en Node si se desea ejecutar la aplicación en su máquina local.
 
