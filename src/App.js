@@ -7,7 +7,7 @@ import InvoicePage from "./pages/Invoices";
 import AddInvoice from "./pages/AddInvoice";
 import Invoice from "./pages/Invoice";
 import Profile from "./pages/Profile";
-import Inbox from "./pages/Inbox";
+import Inbox from "./pages/inbox";
 import Statistics from "./pages/Statistics";
 import ProfileDetails from "./pages/ProfileDetails";
 
