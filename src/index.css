@@ -306,7 +306,7 @@ input[type="file"] {
 }
 
 .searchbar-component input:focus {
-  outline-color: #0C8CE9;
+  outline-color: var(--color-primary);
   outline-style: solid;
   outline-width: 2px;
 }
@@ -317,7 +317,7 @@ input[type="file"] {
   position: absolute;
   top: 50%;
   left: .75rem;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
 }
 
 /*------------------Sort Button Component---------------------*/
@@ -413,7 +413,7 @@ input[type="file"] {
 .navigation-item {
   width: 3rem;
   height: 3rem;
-  position: relative
+  position: relative;
 }
 
 .navigation-item svg {
@@ -428,7 +428,7 @@ input[type="file"] {
 }
 
 .activated svg {
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
 .navigation-item:hover svg {
@@ -529,13 +529,13 @@ input[type="file"] {
 
 .auth-form {
   width: 100%;
-  height: calc(100% - 4rem)
+  height: calc(100% - 4rem);
 }
 
 .auth-card-content {
   display:flex;
   justify-content: center;
-  width: 100%
+  width: 100%;
 }
 
 /*---------------------Invoices Page---------------------------*/
@@ -606,19 +606,19 @@ input[type="file"] {
 .invoice-state-pending {
   text-align: right;
   font-size: .9rem;
-  color: var(--color-darkGray)
+  color: var(--color-darkGray);
 }
 
 .invoice-state-validated {
   text-align: right;
   font-size: .9rem;
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
 .invoice-state-declined {
   text-align: right;
   font-size: .9rem;
-  color: var(--color-error)
+  color: var(--color-error);
 }
 
 .invoice-date-information {
@@ -659,7 +659,7 @@ input[type="file"] {
 
 
 .invoices-empty-message {
-  color: var(--color-darkGray)
+  color: var(--color-darkGray);
 }
 
 /*--------------------Add invoice Page------------------------*/

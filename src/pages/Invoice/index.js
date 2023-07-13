@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { auth } from '../../firebase'
 import Card from '../../components/Card'
 import { deleteInvoice } from '../../utils/database'
 import { useAuth } from '../../context/AuthContext'

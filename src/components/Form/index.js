@@ -23,7 +23,7 @@ const Form = ({ children, onSubmit, errorMessage }) => {
     }
     setTotalSteps(steps);
     setStepsState(stepsState);
-  }, [])
+  }, [children.length])
 
   const nextStep = (e) => {
     e.preventDefault();
